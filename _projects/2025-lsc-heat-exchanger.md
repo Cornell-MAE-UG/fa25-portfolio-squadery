@@ -266,4 +266,4 @@ This project exemplifies how thoughtful application of thermodynamic principles 
 
 6. Cengel, Y.A. and Boles, M.A. *Thermodynamics: An Engineering Approach*, 9th Edition. McGraw-Hill, 2019.
 
-
+---
