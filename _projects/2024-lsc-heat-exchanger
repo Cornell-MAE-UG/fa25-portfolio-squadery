@@ -1,0 +1,286 @@
+
+layout: project
+title: "Thermodynamic Analysis of Cornell's Lake Source Cooling Heat Exchangers"
+image: assets/images/lsc-main.jpg
+description: "First and Second Law analysis of the plate-and-frame heat exchangers in Cornell University's award-winning Lake Source Cooling system"
+mathjax: true
+
+Thermodynamic Analysis: Cornell Lake Source Cooling Heat Exchangers
+
+Introduction
+
+Cornell University's Lake Source Cooling (LSC) system is one of the most energy-efficient district cooling systems in the world. Operational since July 2000, this $58.5 million project uses the naturally cold deep waters of Cayuga Lake (39°F at 250 feet depth) to cool approximately 4 million square feet of campus buildings—achieving an **86% reduction in energy consumption** compared to conventional refrigeration-based cooling.
+
+At the heart of this system are **seven plate-and-frame heat exchangers** that transfer thermal energy between the open lake water loop and the closed campus chilled water loop without the two streams ever mixing. This analysis applies fundamental thermodynamic principles to examine the performance of these specific heat exchangers using real operational data from Cornell Facilities and Campus Services.
+
+![Lake Source Cooling System Overview](assets/images/lsc-diagram.png)
+*Figure 1: Schematic of the LSC system showing the lake water loop (blue) and campus chilled water loop (red) connected through plate-and-frame heat exchangers.*
+
+---
+
+## System Specifications
+
+The LSC facility uses the following heat exchanger configuration (data from Cornell FCS):
+
+| Parameter | Value | Units |
+|-----------|-------|-------|
+| Number of heat exchangers | 7 | units |
+| Plates per unit | 665 | plates |
+| Plate design | Hard angle chevron | — |
+| Design duty per unit | 36,000,000 | BTU/hr |
+| Design duty per unit | 3,000 | tons |
+| Flow rate per unit | 4,600 | gpm |
+| Temperature difference (ΔT) | 16 | °F |
+| Log Mean Temperature Difference (LMTD) | 2.6 | °F |
+| Pressure drop | 16 | psi |
+| Total effective surface area | ~102,000 | ft² |
+
+**Lake Water Side:**
+- Inlet temperature: **39°F** (3.9°C) — year-round at 250 ft depth
+- Outlet temperature: **55°F** (12.8°C) — returned to shallow lake
+- Flow rate: up to **32,000 gpm** total system (13,000 gpm per pump × 3 pumps)
+
+**Campus Chilled Water Side:**
+- Supply temperature to campus: **42°F** (5.6°C)
+- Return temperature from campus: **58°F** (14.4°C)
+
+---
+
+## First Law Analysis: Energy Balance
+
+### Conservation of Energy
+
+For a steady-state heat exchanger with no work interactions and negligible changes in kinetic and potential energy, the First Law of Thermodynamics reduces to an energy balance between the two fluid streams:
+
+$$\dot{Q}_{lake} = \dot{Q}_{campus}$$
+
+For each fluid stream, the heat transfer rate is:
+
+$$\dot{Q} = \dot{m} \cdot c_p \cdot \Delta T$$
+
+where:
+- $\dot{Q}$ = heat transfer rate (BTU/hr or kW)
+- $\dot{m}$ = mass flow rate (lbm/hr or kg/s)
+- $c_p$ = specific heat capacity (BTU/lbm·°F or kJ/kg·K)
+- $\Delta T$ = temperature change (°F or K)
+
+### Calculations for One Heat Exchanger Unit
+
+**Given data:**
+- Design flow rate: 4,600 gpm
+- Water density: 62.4 lbm/ft³
+- Specific heat of water: $c_p$ = 1.0 BTU/lbm·°F
+- Lake water ΔT: 55°F − 39°F = 16°F
+- Campus water ΔT: 58°F − 42°F = 16°F
+
+**Converting flow rate to mass flow rate:**
+
+$$\dot{V} = 4600 \text{ gpm} \times \frac{1 \text{ ft}^3}{7.48 \text{ gal}} \times \frac{60 \text{ min}}{1 \text{ hr}} = 36,898 \text{ ft}^3/\text{hr}$$
+
+$$\dot{m} = \dot{V} \times \rho = 36,898 \text{ ft}^3/\text{hr} \times 62.4 \text{ lbm/ft}^3 = 2,302,435 \text{ lbm/hr}$$
+
+**Heat transfer rate:**
+
+$$\dot{Q} = \dot{m} \cdot c_p \cdot \Delta T = 2,302,435 \times 1.0 \times 16 = 36,839,000 \text{ BTU/hr}$$
+
+This closely matches the design specification of **36,000,000 BTU/hr (3,000 tons)** per unit, validating our calculations.
+
+**Converting to SI units:**
+
+$$\dot{Q} = 36,839,000 \text{ BTU/hr} \times \frac{0.293 \text{ W}}{1 \text{ BTU/hr}} = 10.79 \text{ MW}$$
+
+For the full system (7 units at peak capacity):
+
+$$\dot{Q}_{total} = 7 \times 10.79 \text{ MW} = 75.5 \text{ MW thermal}$$
+
+---
+
+## Heat Exchanger Effectiveness
+
+The effectiveness-NTU method is commonly used to evaluate heat exchanger performance. Effectiveness (ε) is defined as the ratio of actual heat transfer to the maximum possible heat transfer:
+
+$$\varepsilon = \frac{\dot{Q}_{actual}}{\dot{Q}_{max}}$$
+
+The maximum possible heat transfer occurs when one fluid undergoes the maximum temperature change (equal to the inlet temperature difference between the two streams):
+
+$$\dot{Q}_{max} = C_{min} \cdot (T_{h,in} - T_{c,in})$$
+
+where $C_{min} = (\dot{m} \cdot c_p)_{min}$
+
+**For the LSC heat exchangers:**
+
+- Hot fluid (campus return): $T_{h,in}$ = 58°F
+- Cold fluid (lake water): $T_{c,in}$ = 39°F
+- Inlet temperature difference: 58°F − 39°F = 19°F
+
+Since both streams have similar flow rates and identical specific heats (both are water), $C_{hot} ≈ C_{cold}$, so:
+
+$$\dot{Q}_{max} = \dot{m} \cdot c_p \cdot (T_{h,in} - T_{c,in}) = 2,302,435 \times 1.0 \times 19 = 43,746,265 \text{ BTU/hr}$$
+
+**Effectiveness:**
+
+$$\varepsilon = \frac{36,839,000}{43,746,265} = 0.84 = 84\%$$
+
+This high effectiveness indicates excellent heat exchanger design. The chevron plate pattern creates turbulent flow that enhances heat transfer coefficients significantly compared to shell-and-tube designs.
+
+---
+
+## Second Law Analysis: Entropy Generation
+
+### Entropy Balance
+
+The Second Law analysis reveals the thermodynamic irreversibilities in the system. For a steady-state heat exchanger, the entropy generation rate is:
+
+$$\dot{S}_{gen} = \dot{m}_{lake}(s_{out} - s_{in})_{lake} + \dot{m}_{campus}(s_{out} - s_{in})_{campus}$$
+
+For an incompressible liquid like water with constant specific heat:
+
+$$\Delta s = c_p \ln\left(\frac{T_{out}}{T_{in}}\right)$$
+
+**Lake water side (being heated):**
+
+$$\Delta s_{lake} = 1.0 \times \ln\left(\frac{515°R}{499°R}\right) = 1.0 \times \ln(1.032) = 0.0315 \text{ BTU/lbm·°R}$$
+
+**Campus water side (being cooled):**
+
+$$\Delta s_{campus} = 1.0 \times \ln\left(\frac{502°R}{518°R}\right) = 1.0 \times \ln(0.969) = -0.0315 \text{ BTU/lbm·°R}$$
+
+Note: Temperatures converted to absolute scale (°R = °F + 460)
+
+**Net entropy generation per unit mass:**
+
+For equal mass flow rates:
+
+$$\dot{S}_{gen} = \dot{m}(0.0315 - 0.0315) \approx 0$$
+
+Wait—this result seems to suggest zero entropy generation, but that can't be right for an irreversible process! Let me recalculate more carefully.
+
+The issue is that while the temperature *changes* are equal (16°F each), the *absolute temperatures* differ between the streams. Let me redo this calculation:
+
+**Lake water:** $T_{in}$ = 499°R, $T_{out}$ = 515°R
+
+$$\Delta s_{lake} = c_p \ln\left(\frac{T_{out}}{T_{in}}\right) = 1.0 \times \ln\left(\frac{515}{499}\right) = 0.03156 \text{ BTU/lbm·°R}$$
+
+**Campus water:** $T_{in}$ = 518°R, $T_{out}$ = 502°R
+
+$$\Delta s_{campus} = c_p \ln\left(\frac{T_{out}}{T_{in}}\right) = 1.0 \times \ln\left(\frac{502}{518}\right) = -0.03137 \text{ BTU/lbm·°R}$$
+
+**Total entropy generation rate (per unit, assuming equal mass flow rates):**
+
+$$\dot{S}_{gen} = \dot{m}(\Delta s_{lake} + \Delta s_{campus}) = 2,302,435 \times (0.03156 - 0.03137)$$
+
+$$\dot{S}_{gen} = 2,302,435 \times 0.00019 = 437 \text{ BTU/hr·°R} = 0.23 \text{ kW/K}$$
+
+This positive entropy generation confirms the Second Law—the process is irreversible, as expected for heat transfer across a finite temperature difference.
+
+### Second Law Efficiency
+
+The Second Law efficiency compares actual performance to the reversible (Carnot) limit:
+
+$$\eta_{II} = 1 - \frac{T_0 \cdot \dot{S}_{gen}}{\dot{Q}}$$
+
+Using ambient temperature $T_0$ = 530°R (70°F):
+
+$$\eta_{II} = 1 - \frac{530 \times 437}{36,839,000} = 1 - 0.0063 = 99.4\%$$
+
+This remarkably high Second Law efficiency reflects the small temperature difference (LMTD = 2.6°F) across the heat exchanger plates—a hallmark of good thermodynamic design that minimizes irreversibilities.
+
+---
+
+## Overall Heat Transfer Coefficient
+
+The heat transfer rate through a heat exchanger can also be expressed as:
+
+$$\dot{Q} = U \cdot A \cdot \text{LMTD}$$
+
+where:
+- $U$ = overall heat transfer coefficient (BTU/hr·ft²·°F)
+- $A$ = heat transfer surface area (ft²)
+- LMTD = log mean temperature difference (°F)
+
+**Solving for U:**
+
+For one unit with A = 102,000/7 ≈ 14,571 ft² and LMTD = 2.6°F:
+
+$$U = \frac{\dot{Q}}{A \cdot \text{LMTD}} = \frac{36,000,000}{14,571 \times 2.6} = 950 \text{ BTU/hr·ft}^2\text{·°F}$$
+
+This high U-value (approximately **5,400 W/m²·K**) is characteristic of plate heat exchangers with their thin plates, turbulent flow, and large surface area in a compact volume.
+
+---
+
+## Energy Savings Analysis
+
+### Comparison to Conventional Refrigeration
+
+Cornell's previous cooling system used vapor-compression chillers with a system efficiency of approximately **0.7–1.0 kW/ton**. The LSC system operates at only **0.084 kW/ton**—an 86-92% reduction in electrical energy consumption.
+
+**Annual energy savings calculation:**
+
+- Peak cooling load: 20,000 tons
+- Average annual cooling: estimated 10,000 ton-hours × 4,000 hours = 40,000,000 ton-hours
+- Energy saved: (0.85 − 0.084) × 40,000,000 = **30,640,000 kWh/year**
+
+This corresponds to the electricity consumption of approximately **8,000 homes** in Tompkins County.
+
+### Coefficient of Performance (COP)
+
+For the LSC system, we can define an equivalent COP:
+
+$$\text{COP} = \frac{\dot{Q}_{cooling}}{\dot{W}_{pump}}$$
+
+With pump power consumption of approximately 0.084 kW per ton of cooling:
+
+$$\text{COP} = \frac{12,000 \text{ BTU/hr}}{0.084 \text{ kW} \times 3412 \text{ BTU/hr/kW}} = \frac{12,000}{287} = 41.8$$
+
+Compare this to a typical vapor-compression chiller COP of 4–6. The LSC system is **7–10 times more efficient** than conventional cooling because it exploits the natural temperature gradient in Cayuga Lake rather than creating a temperature difference through mechanical work.
+
+---
+
+## Environmental Impact
+
+The thermodynamic efficiency of LSC translates directly to environmental benefits:
+
+| Metric | Annual Value |
+|--------|--------------|
+| Electricity saved | 29+ million kWh |
+| CO₂ emissions avoided | ~15,000 metric tons |
+| Refrigerant eliminated | 100% (no CFCs/HFCs) |
+| Equivalent homes powered | ~8,000 |
+
+The system also avoids the use of ozone-depleting refrigerants entirely, contributing to both climate change mitigation and ozone layer protection.
+
+---
+
+## Conclusion
+
+This thermodynamic analysis of Cornell's Lake Source Cooling heat exchangers demonstrates how fundamental principles from engineering thermodynamics—the First and Second Laws, heat exchanger effectiveness, entropy generation, and energy efficiency metrics—apply to real-world sustainable engineering systems.
+
+**Key findings:**
+1. The plate-and-frame heat exchangers achieve **84% effectiveness** with a design duty of 36 million BTU/hr per unit
+2. The small LMTD (2.6°F) results in minimal entropy generation and a **Second Law efficiency of 99.4%**
+3. The overall heat transfer coefficient of ~950 BTU/hr·ft²·°F reflects excellent thermal performance
+4. The system COP of ~42 is **7–10× more efficient** than conventional chillers
+5. Annual energy savings exceed **29 million kWh**, equivalent to powering 8,000 homes
+
+This project exemplifies how thoughtful application of thermodynamic principles can yield transformative improvements in energy efficiency and environmental sustainability.
+
+---
+
+## References
+
+1. Cornell Facilities and Campus Services. "How Lake Source Cooling Works." https://fcs.cornell.edu/departments/energy-sustainability/utilities/cooling-home/cooling-production-home/lake-source-cooling-home/how-lake-source-cooling-works
+
+2. Cornell Facilities and Campus Services. "Lake Source Cooling." https://fcs.cornell.edu/departments/energy-sustainability/utilities-production-distribution/district-cooling/cooling-production/lake-source-cooling
+
+3. Cornell University Medium. "Lake Source Cooling: Innovation, energy efficiency and environmental sustainability." May 2017.
+
+4. CHA Consulting. "Cornell University Lake Source Cooling." https://www.chasolutions.com/projects/cornell-university-lake-source-cooling/
+
+5. Peer, T. and Joyce, J. "Lake-source cooling." ASHRAE Journal, April 2002.
+
+6. Çengel, Y.A. and Boles, M.A. *Thermodynamics: An Engineering Approach*, 9th Edition. McGraw-Hill, 2019.
+
+---
+
+*Analysis completed December 2024 for ENGRD 2210: Thermodynamics*
+*Sadiqah — Cornell University, Environmental Engineering '27*

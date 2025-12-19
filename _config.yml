@@ -43,3 +43,6 @@ plugins:
   - jekyll-include-cache
   - jekyll-seo-tag
 
+# MathJax for equations
+head_scripts:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML

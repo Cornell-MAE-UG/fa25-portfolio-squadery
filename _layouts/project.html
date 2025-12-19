@@ -13,3 +13,8 @@ layout: default
 <a href={{ "/projects/" | relative_url }} class="back-arrow">
     <i class="bi bi-arrow-left-circle-fill"></i> Back to Projects
 </a>
+{% if page.mathjax %}
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+{% endif %}
